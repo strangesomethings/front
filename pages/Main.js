@@ -28,7 +28,6 @@ const Main = ({props, storeMakeID, storeMakeGame}) => {
     const connectRoom = (roomNumber) => {
         console.log('romNumber :', roomNumber)
         // navigateRoom();
-
     }
     /**
      *  방을 새로 생성하는 함수 
@@ -39,15 +38,15 @@ const Main = ({props, storeMakeID, storeMakeGame}) => {
         let room_number = parseInt(Math.random()*(9999-1000)+1000);
         storeMakeGame(room_number); 
         navigateRoom(room_number);
-        socket.emit("joingame", { name: user.userName, room: room_number });
+        socket.emit("joingame", { name: props.id, room: room_number });
     }
 
     useEffect(() => {
         console.log('useEffect')
         socket.on('joingame',(data) => {
             const {code,message} = data
-            
-        console.log('socket:'+code,message)
+            console.log(data);
+            // console.log('socket:'+code,message)
         })
     },[]);
 

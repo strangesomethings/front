@@ -23,7 +23,7 @@ const Room = ({props, storeMakeID, storeJoinGame}) => {
         <div>
             <Button variant="primary" type="submit" onClick={navigateBack}>
                 방 나가기
-          </Button>
+            </Button>
             <h1>{props.room_number}번방 입니다.</h1>
             <h2>접속자</h2>
             <p>1. {props.id}</p>
