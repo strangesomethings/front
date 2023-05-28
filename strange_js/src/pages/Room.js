@@ -41,15 +41,13 @@ const Room = ({ props, storeMakeID, storeJoinGame, storeLeaveGame }) => {
 		storeLeaveGame(0);
 	};
 
-	const player_list = (list) => {
-		if (list !== undefined) {
-			list.map((x) => {
-				console.log(x.name, x.ready);
-				return <p>{x.name}</p>;
-			});
-			// for (let i = 0; i < list.length; i++) {
-			// 	console.log(list[i]);
-			// }
+	const gameReady = () => {
+		if (ready === false) {
+			console.log("ready");
+			// socket.emit("ready", { name: props.id, room: props.room_number });
+		} else {
+			console.log("ready 해제");
+			// socket.emit("ready", { name: props.id, room: props.room_number });
 		}
 	};
 
@@ -83,6 +81,7 @@ const Room = ({ props, storeMakeID, storeJoinGame, storeLeaveGame }) => {
 				checked={ready}
 				value='1'
 				onChange={(e) => setReady(e.currentTarget.checked)}
+				onClick={gameReady}
 			>
 				Ready
 			</ToggleButton>

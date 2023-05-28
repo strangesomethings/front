@@ -5,6 +5,8 @@
 // 3. 다른애 입장했을때 원래 켜져있던 화면은 데이터 안받아오는데 어떻게 받아오는가?
 // 4. state 계속 받아올 수 있는 api 필요할지도..?
 // -> socket.emit (joingame, ...)해야 socket.on(joingame, ...) 받아올 수 있음
+// 5. 레디 버튼 누를때마다 렌더링되는데 이건 어떡할까
+// -> 레디부분 api 수정해야할듯
 
 import logo from "../logo.svg";
 import "../App.css";
