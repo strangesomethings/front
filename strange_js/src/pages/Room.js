@@ -12,6 +12,8 @@ const Room = ({ props, storeMakeID, storeJoinGame, storeLeaveGame }) => {
 	const navigate = useNavigate(); //페이지 주소 전달
 
 	const navigateBack = () => {
+		console.log("props.room_number", props.room_number);
+		socket.emit("leavegame", { name: props.id, room: props.room_number });
 		navigate("../", { replace: true });
 		storeLeaveGame(0);
 	};

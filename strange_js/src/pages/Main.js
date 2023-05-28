@@ -45,7 +45,7 @@ const Main = ({ props, storeMakeID, storeMakeGame, storeJoinGame }) => {
 		console.log("useEffect");
 		socket.on("joingame", (data) => {
 			const { code, message } = data;
-			console.log(data);
+			console.log("받아온 데이터:", data);
 			// console.log('socket:'+code,message)
 		});
 	}, []);
