@@ -1,3 +1,11 @@
+// 현재 문제
+// 1. socket.on이 방 나가고 들어온 횟수만큼 반복되서 받아온 데이터가 반복출력됨. -> socket이 여러개 생성된 문제인가???
+// -> 어느쪽 문제임..?. useEffect는 한번만 출력됨.
+// 2. 나갔다 들어오면 player number 중복됨
+// 3. 다른애 입장했을때 원래 켜져있던 화면은 데이터 안받아오는데 어떻게 받아오는가?
+// 4. state 계속 받아올 수 있는 api 필요할지도..?
+// -> socket.emit (joingame, ...)해야 socket.on(joingame, ...) 받아올 수 있음
+
 import logo from "../logo.svg";
 import "../App.css";
 import React, { useState, useEffect } from "react";
@@ -43,11 +51,11 @@ const Main = ({ props, storeMakeID, storeMakeGame, storeJoinGame }) => {
 
 	useEffect(() => {
 		console.log("useEffect");
-		socket.on("joingame", (data) => {
-			const { code, message } = data;
-			console.log("받아온 데이터:", data);
-			// console.log('socket:'+code,message)
-		});
+		// socket.on("joingame", (data) => {
+		// 	const { code, message } = data;
+		// 	console.log("Main 받아온 데이터:", data);
+		// 	// console.log('socket:'+code,message)
+		// });
 	}, []);
 
 	const navigate = useNavigate(); //페이지 주소 전달
