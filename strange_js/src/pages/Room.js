@@ -17,7 +17,7 @@ const Room = ({ props, storeMakeID, storeJoinGame, storeLeaveGame }) => {
 
 	useEffect(() => {
 		console.log("room useEffect");
-		socket.emit("joingame", { name: props.id, room: props.room_number });
+		// socket.emit("joingame", { name: props.id, room: props.room_number });
 		socket.on("joingame", (data) => {
 			const { code, message } = data;
 
@@ -32,7 +32,11 @@ const Room = ({ props, storeMakeID, storeJoinGame, storeLeaveGame }) => {
 
 			// console.log('socket:'+code,message)
 		});
-	}, []);
+		socket.on("ready", (data) => {
+			console.log("socket ready");
+			console.log(data);
+		});
+	});
 
 	const navigateBack = () => {
 		console.log("props.room_number", props.room_number);
@@ -44,10 +48,10 @@ const Room = ({ props, storeMakeID, storeJoinGame, storeLeaveGame }) => {
 	const gameReady = () => {
 		if (ready === false) {
 			console.log("ready");
-			// socket.emit("ready", { name: props.id, room: props.room_number });
+			socket.emit("ready", { name: props.id, room: props.room_number });
 		} else {
 			console.log("ready 해제");
-			// socket.emit("ready", { name: props.id, room: props.room_number });
+			socket.emit("ready", { name: props.id, room: props.room_number });
 		}
 	};
 
@@ -68,7 +72,14 @@ const Room = ({ props, storeMakeID, storeJoinGame, storeLeaveGame }) => {
 							<div>
 								<h3>
 									플레이어{x.player_number}: {x.name}{" "}
-									{x.ready ? "READY" : "NOT READY"}
+									{x.name === props.id
+										? ready
+											? "READY"
+											: "NOT READY"
+										: x.ready
+										? "READY"
+										: "NOT READY"}
+									{console.log("x.ready: ", x.ready)}
 								</h3>
 							</div>
 						);
