@@ -54,6 +54,7 @@ const Room = ({ props, storeMakeID, storeJoinGame, storeLeaveGame }) => {
 	return (
 		<div>
 			{console.log("allState = ", allState)}
+			{console.log(props)}
 			<Button variant='primary' type='submit' onClick={navigateBack}>
 				방 나가기
 			</Button>
@@ -73,18 +74,26 @@ const Room = ({ props, storeMakeID, storeJoinGame, storeLeaveGame }) => {
 						);
 				  })
 				: ""}
-			<ToggleButton
-				className='mb-2'
-				id='toggle-check'
-				type='checkbox'
-				variant='outline-danger'
-				checked={ready}
-				value='1'
-				onChange={(e) => setReady(e.currentTarget.checked)}
-				onClick={gameReady}
-			>
-				Ready
-			</ToggleButton>
+
+			<br></br>
+			{props.host ? (
+				<Button variant='primary' type='submit' onClick={navigateBack}>
+					Game Start
+				</Button>
+			) : (
+				<ToggleButton
+					className='mb-2'
+					id='toggle-check'
+					type='checkbox'
+					variant='outline-danger'
+					checked={ready}
+					value='1'
+					onChange={(e) => setReady(e.currentTarget.checked)}
+					onClick={gameReady}
+				>
+					Ready
+				</ToggleButton>
+			)}
 		</div>
 	);
 };
